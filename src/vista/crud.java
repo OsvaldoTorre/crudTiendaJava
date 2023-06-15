@@ -97,6 +97,16 @@ public class crud extends javax.swing.JFrame {
                 jtp_ventanasFocusGained(evt);
             }
         });
+        jtp_ventanas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtp_ventanasMouseClicked(evt);
+            }
+        });
+        jtp_ventanas.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jtp_ventanasPropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_inicioLayout = new javax.swing.GroupLayout(jp_inicio);
         jp_inicio.setLayout(jp_inicioLayout);
@@ -271,6 +281,11 @@ public class crud extends javax.swing.JFrame {
         jta_DescripcionM.setColumns(20);
         jta_DescripcionM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jta_DescripcionM.setRows(5);
+        jta_DescripcionM.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jta_DescripcionMFocusGained(evt);
+            }
+        });
         jScrollPane6.setViewportView(jta_DescripcionM);
 
         jb_agregarM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -575,7 +590,55 @@ public class crud extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtp_ventanasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtp_ventanasFocusGained
-        
+
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT * FROM productos;";
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
+
+        if (jtp_ventanas.getSelectedIndex() == 0) {
+
+        } else if (jtp_ventanas.getSelectedIndex() == 1) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_altas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }
+
+        } else if (jtp_ventanas.getSelectedIndex() == 2) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_modificar, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }
+        } else if (jtp_ventanas.getSelectedIndex() == 3) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_bajas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }
+        } else if (jtp_ventanas.getSelectedIndex() == 4) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_consultas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            // Supongamos que tienes una instancia de JTable llamada "tabla"
+            JTableLoader.loadResultSet(jt_altas, resultado);
+        } catch (SQLException e) {
+            // Manejo de excepciones
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jtp_ventanasFocusGained
 
     private void jc_disponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_disponibleActionPerformed
@@ -583,16 +646,28 @@ public class crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jc_disponibleActionPerformed
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
+        
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT * FROM productos;";
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
 
-        String nombre = jtf_nombreM.getText();
-        String d = jta_DescripcionM.getText();
-        int precio = Integer.parseInt(jtf_precioM.getText());
-        boolean dispo = jc_disponibleM.isSelected();
+        try {
+            // Supongamos que tienes una instancia de JTable llamada "tabla"
+            JTableLoader.loadResultSet(jt_altas, resultado);
+        } catch (SQLException e) {
+            // Manejo de excepciones
+            e.printStackTrace();
+        }
+        
+        String nombre = jtf_nombre.getText();
+        String d = jta_Descripcion.getText();
+        int precio = Integer.parseInt(jtf_precio.getText());
+        boolean dispo = jc_disponible.isSelected();
 
         validar v = new validar();
 
         boolean n = v.validarNL(nombre);
-        boolean p = v.validarN(jtf_precioM.getText());
+        boolean p = v.validarN(jtf_precio.getText());
         boolean s = v.validarNL(d);
 
         if (n && p && s) {
@@ -629,7 +704,17 @@ public class crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_agregarActionPerformed
 
     private void jb_agregarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarMActionPerformed
-        // TODO add your handling code here:
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT * FROM productos;";
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
+
+        try {
+            // Supongamos que tienes una instancia de JTable llamada "tabla"
+            JTableLoader.loadResultSet(jt_modificar, resultado);
+        } catch (SQLException e) {
+            // Manejo de excepciones
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jb_agregarMActionPerformed
 
     private void jc_disponibleMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_disponibleMActionPerformed
@@ -637,7 +722,17 @@ public class crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jc_disponibleMActionPerformed
 
     private void jb_agregarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarBActionPerformed
-        // TODO add your handling code here:
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT * FROM productos;";
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
+
+        try {
+            // Supongamos que tienes una instancia de JTable llamada "tabla"
+            JTableLoader.loadResultSet(jt_bajas, resultado);
+        } catch (SQLException e) {
+            // Manejo de excepciones
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jb_agregarBActionPerformed
 
     private void jc_disponibleBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_disponibleBActionPerformed
@@ -645,22 +740,24 @@ public class crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jc_disponibleBActionPerformed
 
     private void jp_altasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jp_altasFocusGained
-        
+
     }//GEN-LAST:event_jp_altasFocusGained
 
     private void jtf_nombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtf_nombreFocusGained
-        Conexion conexion = Conexion.getInstancia();
-        String consulta1 = "SELECT * FROM productos;";
-        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
 
-        try {
-            // Supongamos que tienes una instancia de JTable llamada "tabla"
-            JTableLoader.loadResultSet(jt_altas, resultado);
-        } catch (SQLException e) {
-            // Manejo de excepciones
-            e.printStackTrace();
-        }
     }//GEN-LAST:event_jtf_nombreFocusGained
+
+    private void jtp_ventanasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtp_ventanasMouseClicked
+        
+    }//GEN-LAST:event_jtp_ventanasMouseClicked
+
+    private void jtp_ventanasPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jtp_ventanasPropertyChange
+
+    }//GEN-LAST:event_jtp_ventanasPropertyChange
+
+    private void jta_DescripcionMFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jta_DescripcionMFocusGained
+
+    }//GEN-LAST:event_jta_DescripcionMFocusGained
 
     /**
      * @param args the command line arguments
