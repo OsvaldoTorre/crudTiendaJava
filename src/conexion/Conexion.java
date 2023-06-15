@@ -8,7 +8,6 @@ package conexion;
  *
  * @author OSVALDO
  */
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Conexion {
+
     private static Conexion instancia;
     private Connection conexion;
 
@@ -72,6 +72,23 @@ public class Conexion {
 
         return resultado;
     }
+
+    public int ejecutarConsultaIME(String consulta, Object... parametros) {
+        int filasAfectadas = 0;
+
+        try {
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            // Asignar los parámetros a la consulta preparada
+            for (int i = 0; i < parametros.length; i++) {
+                statement.setObject(i + 1, parametros[i]);
+            }
+            filasAfectadas = statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al ejecutar la consulta de actualización: " + e.getMessage());
+        }
+
+        return filasAfectadas;
+    }
 }
 
 /*
@@ -98,5 +115,4 @@ Conexion conexion = Conexion.getInstancia();
         } else {
             System.out.println("La consulta esta vacia");
         }
-*/
-
+ */
