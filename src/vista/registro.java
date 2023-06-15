@@ -4,10 +4,10 @@
  */
 package vista;
 
-import com.formdev.flatlaf.FlatLightLaf;
+import conexion.Conexion;
 import java.awt.Color;
-import javax.swing.UIManager;
-import principal.validar;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -91,6 +91,11 @@ public class registro extends javax.swing.JFrame {
 
         jbR_resgistrate.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jbR_resgistrate.setText("Registrarse");
+        jbR_resgistrate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbR_resgistrateActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel2.setText("¿Ya tienes una cuenta?");
@@ -333,7 +338,7 @@ public class registro extends javax.swing.JFrame {
 
     private void jpf_passwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpf_passwordKeyTyped
         int key = evt.getKeyChar();
-        
+
         boolean numeros = key >= 48 && key <= 57;
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
@@ -346,7 +351,7 @@ public class registro extends javax.swing.JFrame {
 
     private void jpf_passwordCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpf_passwordCKeyTyped
         int key = evt.getKeyChar();
-        
+
         boolean numeros = key >= 48 && key <= 57;
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
@@ -359,28 +364,28 @@ public class registro extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         if (jToggleButton1.isSelected()) {
-            jpf_password.setEchoChar((char)0);
+            jpf_password.setEchoChar((char) 0);
         } else {
             jpf_password.setEchoChar('●');
-            
+
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jpf_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpf_passwordFocusGained
         jpf_password.setEchoChar('●');
         jToggleButton1.setSelected(false);
-        
+
     }//GEN-LAST:event_jpf_passwordFocusGained
 
     private void jpf_passwordCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpf_passwordCFocusGained
         jpf_passwordC.setEchoChar('●');
         jToggleButton3.setSelected(false);
-        
+
     }//GEN-LAST:event_jpf_passwordCFocusGained
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         if (jToggleButton3.isSelected()) {
-            jpf_passwordC.setEchoChar((char)0);
+            jpf_passwordC.setEchoChar((char) 0);
         } else {
             jpf_passwordC.setEchoChar('●');
         }
@@ -414,10 +419,39 @@ public class registro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtR_emailFocusLost
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void jbR_resgistrateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbR_resgistrateActionPerformed
+        String user = jtR_user.getText();
+        String email = jtR_email.getText();
+        String pst1 = new String(jpf_password.getPassword());
+        String pst2 = new String(jpf_passwordC.getPassword());
+        boolean chek = jcb_terminosCondiciones.isSelected();
+
+        Conexion conexion = Conexion.getInstancia();
+
+        // Ejemplo de ejecución de consulta
+        String consulta = "INSERT INTO usuarios (usuario, email, contrasena)" + "VALUES ('" + user + "', '" + email + "', '" + pst1 + "');";
+        ResultSet resultado = conexion.ejecutarConsulta(consulta);
+
+        if (resultado != null) {
+            try {
+                while (resultado.next()) {
+                    
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al procesar los resultados: " + e.getMessage());
+            }
+
+            conexion.cerrarConexion();
+        } else {
+            System.out.println("La consulta esta vacia");
+        }
+    
+    }//GEN-LAST:event_jbR_resgistrateActionPerformed
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -428,16 +462,28 @@ public class registro extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(registro.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(registro.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(registro.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(registro.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
