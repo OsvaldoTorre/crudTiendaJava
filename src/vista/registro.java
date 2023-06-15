@@ -435,9 +435,10 @@ public class registro extends javax.swing.JFrame {
         boolean check = chek;
 
         if (validUser && validPst1 && validPst2 && pstEquality && validEmail && check) {
+            
             Conexion conexion = Conexion.getInstancia();
             String consultaInsercion = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
-            int filasInsertadas = conexion.ejecutarConsultaIME(consultaInsercion, user, email, pst1);
+            conexion.ejecutarConsultaSinResultado(consultaInsercion, user, email, pst1);
             conexion.cerrarConexion();
 
             jtR_user.setText("");

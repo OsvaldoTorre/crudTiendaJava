@@ -357,7 +357,7 @@ public class login extends javax.swing.JFrame {
                     System.out.println("Error al procesar los resultados: " + e.getMessage());
                 }
 
-                conexion.cerrarConexion();
+                
             } else {
                 conexion.cerrarConexion();
             }
