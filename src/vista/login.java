@@ -4,10 +4,8 @@
  */
 package vista;
 
-import com.formdev.flatlaf.FlatLightLaf;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import principal.*;
+import java.awt.Color;
+import principal.validar;
 
 /**
  *
@@ -64,24 +62,40 @@ public class login extends javax.swing.JFrame {
 
         jtI_user.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jtI_user.setForeground(new java.awt.Color(204, 204, 204));
-        jtI_user.setText("User");
-        jtI_user.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtI_userActionPerformed(evt);
+        jtI_user.setText("Usuario");
+        jtI_user.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtI_userFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtI_userFocusLost(evt);
+            }
+        });
+        jtI_user.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtI_userKeyTyped(evt);
             }
         });
 
         jtI_password.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jtI_password.setForeground(new java.awt.Color(204, 204, 204));
-        jtI_password.setText("Password");
+        jtI_password.setText("Contraseña");
+        jtI_password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtI_passwordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtI_passwordFocusLost(evt);
+            }
+        });
+        jtI_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtI_passwordKeyTyped(evt);
+            }
+        });
 
         jbI_IniciaSesion.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jbI_IniciaSesion.setText("Inicia sesión");
-        jbI_IniciaSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbI_IniciaSesionActionPerformed(evt);
-            }
-        });
 
         jlI_olvidasteContrasena.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jlI_olvidasteContrasena.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
@@ -142,11 +156,11 @@ public class login extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlI_registrateAqui)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jlI_mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlI_mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,10 +250,6 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbI_IniciaSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbI_IniciaSesionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbI_IniciaSesionActionPerformed
-
     private void jlI_registrateAquiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlI_registrateAquiMouseClicked
         registro r = new registro();
         r.setLocationRelativeTo(null);
@@ -248,13 +258,64 @@ public class login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jlI_registrateAquiMouseClicked
 
-    private void jtI_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtI_userActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtI_userActionPerformed
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        
+
     }//GEN-LAST:event_formWindowActivated
+
+    private void jtI_userFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtI_userFocusGained
+        if (jtI_user.getText().equals("Usuario")) {
+            jtI_user.setText("");
+            jtI_user.setForeground(Color.BLACK);
+        }
+
+    }//GEN-LAST:event_jtI_userFocusGained
+
+    private void jtI_userFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtI_userFocusLost
+        if (jtI_user.getText().equals("")) {
+            jtI_user.setText("Usuario");
+            jtI_user.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_jtI_userFocusLost
+
+    private void jtI_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtI_passwordFocusGained
+        if (jtI_password.getText().equals("Contraseña")) {
+            jtI_password.setText("");
+            jtI_password.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jtI_passwordFocusGained
+
+    private void jtI_passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtI_passwordFocusLost
+        if (jtI_password.getText().equals("")) {
+            jtI_password.setText("Contraseña");
+            jtI_password.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_jtI_passwordFocusLost
+
+    private void jtI_userKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtI_userKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean numeros = key >= 48 && key <= 57;
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 35 || key == 46 || key == 95;
+
+        if (!(minusculas || mayusculas || simbolo || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtI_userKeyTyped
+
+    private void jtI_passwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtI_passwordKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean numeros = key >= 48 && key <= 57;
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 35 || key == 46 || key == 95;
+
+        if (!(minusculas || mayusculas || simbolo || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtI_passwordKeyTyped
 
     /**
      * @param args the command line arguments

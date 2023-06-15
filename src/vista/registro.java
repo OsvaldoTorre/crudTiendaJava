@@ -5,7 +5,9 @@
 package vista;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.Color;
 import javax.swing.UIManager;
+import principal.validar;
 
 /**
  *
@@ -34,7 +36,6 @@ public class registro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jtR_user = new javax.swing.JTextField();
-        jtR_password = new javax.swing.JTextField();
         jbR_resgistrate = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jcb_terminosCondiciones = new javax.swing.JCheckBox();
@@ -45,7 +46,10 @@ public class registro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jtR_email = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jtR_confirmPassword = new javax.swing.JTextField();
+        jpf_password = new javax.swing.JPasswordField();
+        jpf_passwordC = new javax.swing.JPasswordField();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crea tu cuenta");
@@ -70,11 +74,20 @@ public class registro extends javax.swing.JFrame {
 
         jtR_user.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jtR_user.setForeground(new java.awt.Color(204, 204, 204));
-        jtR_user.setText("User");
-
-        jtR_password.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jtR_password.setForeground(new java.awt.Color(204, 204, 204));
-        jtR_password.setText("Password");
+        jtR_user.setText("Usuario");
+        jtR_user.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtR_userFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtR_userFocusLost(evt);
+            }
+        });
+        jtR_user.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtR_userKeyTyped(evt);
+            }
+        });
 
         jbR_resgistrate.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jbR_resgistrate.setText("Registrarse");
@@ -110,13 +123,66 @@ public class registro extends javax.swing.JFrame {
         jtR_email.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jtR_email.setForeground(new java.awt.Color(204, 204, 204));
         jtR_email.setText("Email");
+        jtR_email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtR_emailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtR_emailFocusLost(evt);
+            }
+        });
+        jtR_email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtR_emailKeyTyped(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel10.setText("Confirmar contraseña");
 
-        jtR_confirmPassword.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jtR_confirmPassword.setForeground(new java.awt.Color(204, 204, 204));
-        jtR_confirmPassword.setText("Password");
+        jpf_password.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jpf_password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jpf_passwordFocusGained(evt);
+            }
+        });
+        jpf_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jpf_passwordKeyTyped(evt);
+            }
+        });
+
+        jpf_passwordC.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jpf_passwordC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jpf_passwordCFocusGained(evt);
+            }
+        });
+        jpf_passwordC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jpf_passwordCKeyTyped(evt);
+            }
+        });
+
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/001-ojo.png"))); // NOI18N
+        jToggleButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToggleButton1.setOpaque(true);
+        jToggleButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/002-ver.png"))); // NOI18N
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/001-ojo.png"))); // NOI18N
+        jToggleButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToggleButton3.setOpaque(true);
+        jToggleButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/002-ver.png"))); // NOI18N
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,12 +195,14 @@ public class registro extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtR_confirmPassword)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtR_user)
                     .addComponent(jtR_email)
-                    .addComponent(jtR_password)
                     .addComponent(jbR_resgistrate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jpf_password)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcb_terminosCondiciones)
@@ -143,7 +211,11 @@ public class registro extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jlR_iniciaSesionAqui)))
-                        .addGap(64, 64, 64)))
+                        .addGap(40, 40, 40))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jpf_passwordC, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -161,13 +233,17 @@ public class registro extends javax.swing.JFrame {
                 .addComponent(jtR_email, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addGap(8, 8, 8)
-                .addComponent(jtR_password, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpf_password)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addGap(8, 8, 8)
-                .addComponent(jtR_confirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(jpf_passwordC))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jcb_terminosCondiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbR_resgistrate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,23 +280,22 @@ public class registro extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
+                .addGap(180, 180, 180)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addGap(180, 180, 180))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(56, 56, 56))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        
+
     }//GEN-LAST:event_formWindowActivated
 
     private void jlR_iniciaSesionAquiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlR_iniciaSesionAquiMouseClicked
@@ -229,6 +304,115 @@ public class registro extends javax.swing.JFrame {
         l.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jlR_iniciaSesionAquiMouseClicked
+
+    private void jtR_userKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtR_userKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 35 || key == 46 || key == 95;
+
+        if (!(minusculas || mayusculas || simbolo || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtR_userKeyTyped
+
+    private void jtR_emailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtR_emailKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 64 || key == 46 || key == 95;
+
+        if (!(minusculas || mayusculas || simbolo || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtR_emailKeyTyped
+
+    private void jpf_passwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpf_passwordKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean numeros = key >= 48 && key <= 57;
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 35 || key == 46 || key == 95;
+
+        if (!(minusculas || mayusculas || simbolo || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jpf_passwordKeyTyped
+
+    private void jpf_passwordCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpf_passwordCKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean numeros = key >= 48 && key <= 57;
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 35 || key == 46 || key == 95;
+
+        if (!(minusculas || mayusculas || simbolo || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jpf_passwordCKeyTyped
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        if (jToggleButton1.isSelected()) {
+            jpf_password.setEchoChar((char)0);
+        } else {
+            jpf_password.setEchoChar('●');
+            
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jpf_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpf_passwordFocusGained
+        jpf_password.setEchoChar('●');
+        jToggleButton1.setSelected(false);
+        
+    }//GEN-LAST:event_jpf_passwordFocusGained
+
+    private void jpf_passwordCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpf_passwordCFocusGained
+        jpf_passwordC.setEchoChar('●');
+        jToggleButton3.setSelected(false);
+        
+    }//GEN-LAST:event_jpf_passwordCFocusGained
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        if (jToggleButton3.isSelected()) {
+            jpf_passwordC.setEchoChar((char)0);
+        } else {
+            jpf_passwordC.setEchoChar('●');
+        }
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jtR_userFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtR_userFocusGained
+        if (jtR_user.getText().equals("Usuario")) {
+            jtR_user.setText("");
+            jtR_user.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jtR_userFocusGained
+
+    private void jtR_userFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtR_userFocusLost
+        if (jtR_user.getText().equals("")) {
+            jtR_user.setText("Usuario");
+            jtR_user.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_jtR_userFocusLost
+
+    private void jtR_emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtR_emailFocusGained
+        if (jtR_email.getText().equals("Email")) {
+            jtR_email.setText("");
+            jtR_email.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jtR_emailFocusGained
+
+    private void jtR_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtR_emailFocusLost
+        if (jtR_email.getText().equals("")) {
+            jtR_email.setText("Email");
+            jtR_email.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_jtR_emailFocusLost
 
     /**
      * @param args the command line arguments
@@ -277,12 +461,14 @@ public class registro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JButton jbR_resgistrate;
     private javax.swing.JCheckBox jcb_terminosCondiciones;
     private javax.swing.JLabel jlR_iniciaSesionAqui;
-    private javax.swing.JTextField jtR_confirmPassword;
+    private javax.swing.JPasswordField jpf_password;
+    private javax.swing.JPasswordField jpf_passwordC;
     private javax.swing.JTextField jtR_email;
-    private javax.swing.JTextField jtR_password;
     private javax.swing.JTextField jtR_user;
     // End of variables declaration//GEN-END:variables
 }
