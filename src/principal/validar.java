@@ -4,10 +4,10 @@
  */
 package principal;
 
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
@@ -15,13 +15,9 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.*;
-
-import java.sql.SQLException;
-import org.postgresql.jdbc.PgResultSetMetaData;
+import javax.swing.table.TableModel;
+import vista.ResultSetTableModel;
 
 /**
  *
@@ -79,31 +75,6 @@ public class validar {
         timer.start();
 
     }
-
-    public static void cargarTabla(JTable tabla, ResultSet resultado) throws SQLException {
-        // Obtener metadatos del ResultSet
-        ResultSetMetaData metaData = (ResultSetMetaData) resultado.getMetaData();
-
-        // Obtener el número de columnas
-        int columnCount = metaData.getColumnCount();
-
-        // Crear un modelo de tabla vacío con las columnas
-        DefaultTableModel tableModel = new DefaultTableModel();
-        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-            tableModel.addColumn(metaData.getColumnLabel(columnIndex));
-        }
-
-        // Iterar sobre el ResultSet y agregar filas al modelo de tabla
-        while (resultado.next()) {
-            Object[] rowData = new Object[columnCount];
-            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-                rowData[columnIndex - 1] = resultado.getObject(columnIndex);
-            }
-            tableModel.addRow(rowData);
-        }
-
-        // Asignar el modelo de tabla al componente JTable
-        tabla.setModel(tableModel);
-    }
-
+    
+    
 }
