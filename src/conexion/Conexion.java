@@ -84,35 +84,9 @@ public class Conexion {
             }
             filasAfectadas = statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error al ejecutar la consulta de actualización: " + e.getMessage());
+            System.out.println("Error al ejecutar la consulta: " + e.getMessage());
         }
 
         return filasAfectadas;
     }
 }
-
-/*
-Conexion conexion = Conexion.getInstancia();
-
-        // Ejemplo de ejecución de consulta
-        String consulta = "SELECT * FROM usuarios";
-        ResultSet resultado = conexion.ejecutarConsulta(consulta);
-
-        if (resultado != null) {
-            try {
-                while (resultado.next()) {
-                    int id = resultado.getInt("id");
-                    String nombre = resultado.getString("nombre_usuario");
-                    String email = resultado.getString("email");
-                    String contrasena = resultado.getString("contrasena");
-
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al procesar los resultados: " + e.getMessage());
-            }
-
-            conexion.cerrarConexion();
-        } else {
-            System.out.println("La consulta esta vacia");
-        }
- */

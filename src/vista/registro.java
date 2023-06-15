@@ -425,33 +425,18 @@ public class registro extends javax.swing.JFrame {
         String pst1 = new String(jpf_password.getPassword());
         String pst2 = new String(jpf_passwordC.getPassword());
         boolean chek = jcb_terminosCondiciones.isSelected();
-
+        
+        
         Conexion conexion = Conexion.getInstancia();
-
-        // Ejemplo de ejecución de consulta
-        String consulta = "INSERT INTO usuarios (usuario, email, contrasena)" + "VALUES ('" + user + "', '" + email + "', '" + pst1 + "');";
-        ResultSet resultado = conexion.ejecutarConsulta(consulta);
-
-        if (resultado != null) {
-            try {
-                while (resultado.next()) {
-                    
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al procesar los resultados: " + e.getMessage());
-            }
-
-            conexion.cerrarConexion();
-        } else {
-            System.out.println("La consulta esta vacia");
-        }
-    
+        String consultaInsercion = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
+        int filasInsertadas = conexion.ejecutarConsultaIME(consultaInsercion, user, email, pst1);
+        conexion.cerrarConexion();
     }//GEN-LAST:event_jbR_resgistrateActionPerformed
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -463,27 +448,23 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registro.class  
+            java.util.logging.Logger.getLogger(registro.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(registro.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registro.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(registro.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registro.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registro.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(registro.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
