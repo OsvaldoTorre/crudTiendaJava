@@ -13,6 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 
@@ -27,20 +29,15 @@ public class validar {
         Matcher mat = null;
         pat = Pattern.compile("^([0-9a-zA-Z]([_.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+([a-zA-Z]{2,9}.)+[a-zA-Z]{2,3})$");
         mat = pat.matcher(correo);
-        if (mat.find()) {
-            System.out.println("[" + mat.group() + "]");
-            return true;
-        } else {
-            return false;
-        }
+        return mat.find();
     }
 
     public boolean validarUserOrPassword(String input) {
         boolean isValidUsername = input.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#._]).{8,}$");
         return isValidUsername;
     }
-    
-public void highlightComponent(JComponent component, int duration) {
+
+    public void highlightComponent(JComponent component, int duration) {
         // Guardar el borde original
         Border originalBorder = component.getBorder();
 
@@ -52,13 +49,14 @@ public void highlightComponent(JComponent component, int duration) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Restablecer el borde original
+
                 component.setBorder(originalBorder);
             }
         });
+
         timer.setRepeats(false); // No repetir el temporizador
 
-        // Iniciar el temporizador
         timer.start();
-    }
 
+    }
 }

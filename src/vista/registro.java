@@ -4,6 +4,7 @@
  */
 package vista;
 
+import com.formdev.flatlaf.ui.FlatBorder;
 import conexion.Conexion;
 import java.awt.Color;
 import principal.validar;
@@ -420,24 +421,57 @@ public class registro extends javax.swing.JFrame {
 
     private void jbR_resgistrateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbR_resgistrateActionPerformed
         validar v = new validar();
-        
+
         String user = jtR_user.getText();
         String email = jtR_email.getText();
         String pst1 = new String(jpf_password.getPassword());
         String pst2 = new String(jpf_passwordC.getPassword());
         boolean chek = jcb_terminosCondiciones.isSelected();
-        
-        v.highlightComponent(jtR_user, 5000);
-        
-        /*if (v.validarUserOrPassword(user)&&v.validarUserOrPassword(pst1)&& v.validarUserOrPassword(pst2)&& pst1==pst2 && v.isEmail(email) && chek) {
-            Conexion conexion = Conexion.getInstancia();
-            String consultaInsercion = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
-            int filasInsertadas = conexion.ejecutarConsultaIME(consultaInsercion, user, email, pst1);
-            conexion.cerrarConexion();
-        } else {
+
+        boolean validUser = v.validarUserOrPassword(user);
+        boolean validPst1 = v.validarUserOrPassword(pst1);
+        boolean validPst2 = v.validarUserOrPassword(pst2);
+        boolean pstEquality = (pst1.equals(pst2));
+        boolean validEmail = v.isEmail(email);
+        boolean check = chek;
+
+        if (validUser && validPst1 && validPst2 && pstEquality && validEmail && check) {
+           Conexion conexion = Conexion.getInstancia();
+           String consultaInsercion = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
+           int filasInsertadas = conexion.ejecutarConsultaIME(consultaInsercion, user, email, pst1);
+           conexion.cerrarConexion();
+           
+           System.err.println("entro");
             
-        }*/
-        
+        } else {
+            // Al menos una de las expresiones booleanas es falsa
+
+            if (!validUser) {
+                v.highlightComponent(jtR_user, 2000);
+            }
+
+            if (!validPst1) {
+                v.highlightComponent(jpf_password, 2000);
+            }
+
+            if (!validPst2) {
+                v.highlightComponent(jpf_passwordC, 2000);
+            }
+
+            if (!pstEquality) {
+                v.highlightComponent(jpf_passwordC, 2000);
+                
+            }
+
+            if (!validEmail) {
+                v.highlightComponent(jtR_email, 2000);
+            }
+
+            if (!check) {
+                v.highlightComponent(jcb_terminosCondiciones, 2000);
+            }
+        }
+
     }//GEN-LAST:event_jbR_resgistrateActionPerformed
 
     /**
