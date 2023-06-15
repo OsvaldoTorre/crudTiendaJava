@@ -6,8 +6,7 @@ package vista;
 
 import conexion.Conexion;
 import java.awt.Color;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import principal.validar;
 
 /**
  *
@@ -420,17 +419,25 @@ public class registro extends javax.swing.JFrame {
     }//GEN-LAST:event_jtR_emailFocusLost
 
     private void jbR_resgistrateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbR_resgistrateActionPerformed
+        validar v = new validar();
+        
         String user = jtR_user.getText();
         String email = jtR_email.getText();
         String pst1 = new String(jpf_password.getPassword());
         String pst2 = new String(jpf_passwordC.getPassword());
         boolean chek = jcb_terminosCondiciones.isSelected();
         
+        v.highlightComponent(jtR_user, 5000);
         
-        Conexion conexion = Conexion.getInstancia();
-        String consultaInsercion = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
-        int filasInsertadas = conexion.ejecutarConsultaIME(consultaInsercion, user, email, pst1);
-        conexion.cerrarConexion();
+        /*if (v.validarUserOrPassword(user)&&v.validarUserOrPassword(pst1)&& v.validarUserOrPassword(pst2)&& pst1==pst2 && v.isEmail(email) && chek) {
+            Conexion conexion = Conexion.getInstancia();
+            String consultaInsercion = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
+            int filasInsertadas = conexion.ejecutarConsultaIME(consultaInsercion, user, email, pst1);
+            conexion.cerrarConexion();
+        } else {
+            
+        }*/
+        
     }//GEN-LAST:event_jbR_resgistrateActionPerformed
 
     /**

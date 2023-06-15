@@ -4,22 +4,23 @@
  */
 package principal;
 
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.ui.FlatTextBorder;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.Timer;
+import javax.swing.border.Border;
 
 /**
  *
  * @author OSVALDO
  */
 public class validar {
-
-    public boolean validarUsername(String input) {
-        // Expresión regular para permitir letras, números y algunos símbolos (-, _, .)
-        String regex = "^[a-zA-Z0-9\\-_.]+$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(input);
-        return matcher.matches();
-    }
 
     public boolean isEmail(String correo) {
         Pattern pat = null;
@@ -32,6 +33,32 @@ public class validar {
         } else {
             return false;
         }
+    }
+
+    public boolean validarUserOrPassword(String input) {
+        boolean isValidUsername = input.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#._]).{8,}$");
+        return isValidUsername;
+    }
+    
+public void highlightComponent(JComponent component, int duration) {
+        // Guardar el borde original
+        Border originalBorder = component.getBorder();
+
+        // Establecer el borde rojo
+        component.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+
+        // Crear un temporizador para restablecer el borde original después de la duración especificada
+        Timer timer = new Timer(duration, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Restablecer el borde original
+                component.setBorder(originalBorder);
+            }
+        });
+        timer.setRepeats(false); // No repetir el temporizador
+
+        // Iniciar el temporizador
+        timer.start();
     }
 
 }
