@@ -4,8 +4,12 @@
  */
 package vista;
 
+import conexion.Conexion;
 import java.awt.Color;
 import principal.validar;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -96,6 +100,11 @@ public class login extends javax.swing.JFrame {
 
         jbI_IniciaSesion.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jbI_IniciaSesion.setText("Inicia sesión");
+        jbI_IniciaSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbI_IniciaSesionActionPerformed(evt);
+            }
+        });
 
         jlI_olvidasteContrasena.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jlI_olvidasteContrasena.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
@@ -293,7 +302,7 @@ public class login extends javax.swing.JFrame {
 
     private void jtI_userKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtI_userKeyTyped
         int key = evt.getKeyChar();
-        
+
         boolean numeros = key >= 48 && key <= 57;
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
@@ -306,7 +315,7 @@ public class login extends javax.swing.JFrame {
 
     private void jtI_passwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtI_passwordKeyTyped
         int key = evt.getKeyChar();
-        
+
         boolean numeros = key >= 48 && key <= 57;
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
@@ -316,6 +325,51 @@ public class login extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jtI_passwordKeyTyped
+
+    private void jbI_IniciaSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbI_IniciaSesionActionPerformed
+
+        String user = jtI_user.getText();
+        String pass = jtI_password.getText();
+
+        validar v = new validar();
+
+        boolean u = v.validarUserOrPassword(user);
+        boolean p = v.validarUserOrPassword(pass);
+
+        if (p && u) {
+            Conexion conexion = Conexion.getInstancia();
+
+            // Ejemplo de ejecución de consulta
+            String consulta = "SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?;";
+            ResultSet resultado = conexion.ejecutarConsulta(consulta, user, pass);
+
+            if (resultado != null) {
+                try {
+                    while (resultado.next()) {
+
+                    }
+                    crud n = new crud();
+                    n.setVisible(true);
+                    n.setLocationRelativeTo(null);
+                    this.dispose();
+                } catch (SQLException e) {
+                    System.out.println("Error al procesar los resultados: " + e.getMessage());
+                }
+
+                conexion.cerrarConexion();
+            } else {
+                conexion.cerrarConexion();
+            }
+        } else {
+            if (!u) {
+                v.highlightComponent(jtI_user, 2000);
+            }
+
+            if (!p) {
+                v.highlightComponent(jtI_password, 2000);
+            }
+        }
+    }//GEN-LAST:event_jbI_IniciaSesionActionPerformed
 
     /**
      * @param args the command line arguments

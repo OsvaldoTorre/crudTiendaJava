@@ -4,8 +4,6 @@
  */
 package principal;
 
-import com.formdev.flatlaf.FlatLaf;
-import com.formdev.flatlaf.ui.FlatTextBorder;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,8 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 
@@ -59,4 +55,6 @@ public class validar {
         timer.start();
 
     }
+
+    
 }

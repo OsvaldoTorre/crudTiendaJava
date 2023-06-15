@@ -4,7 +4,6 @@
  */
 package vista;
 
-import com.formdev.flatlaf.ui.FlatBorder;
 import conexion.Conexion;
 import java.awt.Color;
 import principal.validar;
@@ -436,13 +435,17 @@ public class registro extends javax.swing.JFrame {
         boolean check = chek;
 
         if (validUser && validPst1 && validPst2 && pstEquality && validEmail && check) {
-           Conexion conexion = Conexion.getInstancia();
-           String consultaInsercion = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
-           int filasInsertadas = conexion.ejecutarConsultaIME(consultaInsercion, user, email, pst1);
-           conexion.cerrarConexion();
-           
-           System.err.println("entro");
-            
+            Conexion conexion = Conexion.getInstancia();
+            String consultaInsercion = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
+            int filasInsertadas = conexion.ejecutarConsultaIME(consultaInsercion, user, email, pst1);
+            conexion.cerrarConexion();
+
+            jtR_user.setText("");
+            jtR_email.setText("");
+            jpf_password.setText("");
+            jpf_passwordC.setText("");
+            jcb_terminosCondiciones.setSelected(false);
+
         } else {
             // Al menos una de las expresiones booleanas es falsa
 
@@ -460,7 +463,7 @@ public class registro extends javax.swing.JFrame {
 
             if (!pstEquality) {
                 v.highlightComponent(jpf_passwordC, 2000);
-                
+
             }
 
             if (!validEmail) {
