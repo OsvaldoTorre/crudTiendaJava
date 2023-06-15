@@ -352,6 +352,7 @@ public class login extends javax.swing.JFrame {
                     n.setVisible(true);
                     n.setLocationRelativeTo(null);
                     this.dispose();
+                    
                 } catch (SQLException e) {
                     System.out.println("Error al procesar los resultados: " + e.getMessage());
                 }

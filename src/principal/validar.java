@@ -4,6 +4,7 @@
  */
 package principal;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,8 +12,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.*;
+
+import java.sql.SQLException;
+import org.postgresql.jdbc.PgResultSetMetaData;
 
 /**
  *
@@ -30,6 +39,21 @@ public class validar {
 
     public boolean validarUserOrPassword(String input) {
         boolean isValidUsername = input.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#._]).{8,}$");
+        return isValidUsername;
+    }
+
+    public boolean validarN(String input) {
+        boolean isValidUsername = input.matches("^[0-9]+$");
+        return isValidUsername;
+    }
+
+    public boolean validarNL(String input) {
+        boolean isValidUsername = input.matches("^[a-zA-Z0-9]+$");
+        return isValidUsername;
+    }
+
+    public boolean validarL(String input) {
+        boolean isValidUsername = input.matches("^[a-zA-Z]+$");
         return isValidUsername;
     }
 
@@ -56,5 +80,30 @@ public class validar {
 
     }
 
-    
+    public static void cargarTabla(JTable tabla, ResultSet resultado) throws SQLException {
+        // Obtener metadatos del ResultSet
+        ResultSetMetaData metaData = (ResultSetMetaData) resultado.getMetaData();
+
+        // Obtener el número de columnas
+        int columnCount = metaData.getColumnCount();
+
+        // Crear un modelo de tabla vacío con las columnas
+        DefaultTableModel tableModel = new DefaultTableModel();
+        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+            tableModel.addColumn(metaData.getColumnLabel(columnIndex));
+        }
+
+        // Iterar sobre el ResultSet y agregar filas al modelo de tabla
+        while (resultado.next()) {
+            Object[] rowData = new Object[columnCount];
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                rowData[columnIndex - 1] = resultado.getObject(columnIndex);
+            }
+            tableModel.addRow(rowData);
+        }
+
+        // Asignar el modelo de tabla al componente JTable
+        tabla.setModel(tableModel);
+    }
+
 }

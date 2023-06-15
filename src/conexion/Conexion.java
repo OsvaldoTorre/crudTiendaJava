@@ -89,4 +89,20 @@ public class Conexion {
 
         return filasAfectadas;
     }
+
+    public boolean ejecutarConsultaSinResultado(String consulta, Object... parametros) {
+    try {
+        PreparedStatement statement = conexion.prepareStatement(consulta);
+        // Asignar los parámetros a la consulta preparada
+        for (int i = 0; i < parametros.length; i++) {
+            statement.setObject(i + 1, parametros[i]);
+        }
+        statement.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        System.out.println("Error al ejecutar la consulta: " + e.getMessage());
+        return false;
+    }
+}
+
 }
