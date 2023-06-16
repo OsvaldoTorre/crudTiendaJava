@@ -86,6 +86,8 @@ public class crud extends javax.swing.JFrame {
         jt_consultas = new javax.swing.JTable();
         jb_buscar = new javax.swing.JButton();
         jtxt_buscarTexto = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -568,6 +570,20 @@ public class crud extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("VIsta con Join");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Funtion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jp_consultasLayout = new javax.swing.GroupLayout(jp_consultas);
         jp_consultas.setLayout(jp_consultasLayout);
         jp_consultasLayout.setHorizontalGroup(
@@ -577,7 +593,12 @@ public class crud extends javax.swing.JFrame {
                 .addGroup(jp_consultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jp_consultasLayout.createSequentialGroup()
-                        .addComponent(jtxt_buscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jp_consultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jp_consultasLayout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
+                            .addComponent(jtxt_buscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jb_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -585,14 +606,16 @@ public class crud extends javax.swing.JFrame {
         jp_consultasLayout.setVerticalGroup(
             jp_consultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_consultasLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jp_consultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jp_consultasLayout.createSequentialGroup()
-                        .addComponent(jtxt_buscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jb_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jp_consultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jp_consultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtxt_buscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -921,7 +944,7 @@ public class crud extends javax.swing.JFrame {
         
         Conexion conexion = Conexion.getInstancia();
         String consulta1 = "SELECT * FROM productos WHERE concat(id::text, nombre, descripcion, precio::text, disponibilidad::text) ILIKE '%" +a+ "%';";
-        System.out.println(consulta1);
+        
         ResultSet resultado = conexion.ejecutarConsulta(consulta1);
         if (resultado != null) {
             try {
@@ -940,7 +963,7 @@ public class crud extends javax.swing.JFrame {
         
         Conexion conexion = Conexion.getInstancia();
         String consulta1 = "SELECT * FROM productos WHERE concat(id::text, nombre, descripcion, precio::text, disponibilidad::text) ILIKE '%" +a+ "%';";
-        System.out.println(consulta1);
+        
         ResultSet resultado = conexion.ejecutarConsulta(consulta1);
         if (resultado != null) {
             try {
@@ -958,7 +981,7 @@ public class crud extends javax.swing.JFrame {
         
         Conexion conexion = Conexion.getInstancia();
         String consulta1 = "SELECT * FROM productos WHERE concat(id::text, nombre, descripcion, precio::text, disponibilidad::text) ILIKE '%" +(char)key+ "%';";
-        System.out.println(consulta1);
+        
         ResultSet resultado = conexion.ejecutarConsulta(consulta1);
         if (resultado != null) {
             try {
@@ -970,6 +993,36 @@ public class crud extends javax.swing.JFrame {
             }            
         }
     }//GEN-LAST:event_jtxt_buscarTextoKeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT *FROM obtener_productos_disponibles();";
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
+        if (resultado != null) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_consultas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT * FROM vista_productos_detalles;";
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
+        if (resultado != null) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_consultas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1007,6 +1060,8 @@ public class crud extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
