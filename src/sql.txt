@@ -23,3 +23,17 @@ $$ LANGUAGE plpgsql;
 
 SELECT *FROM obtener_productos_disponibles();
 
+// TRIGGER
+
+CREATE OR REPLACE FUNCTION eliminar_producto() RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO productos_eliminados (id, nombre, descripcion, precio, disponibilidad, eliminado)
+  VALUES (OLD.id, OLD.nombre, OLD.descripcion, OLD.precio, OLD.disponibilidad, true);
+  RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_eliminar_producto
+BEFORE DELETE ON productos
+FOR EACH ROW
+EXECUTE FUNCTION eliminar_producto();
