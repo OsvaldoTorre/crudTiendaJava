@@ -63,10 +63,12 @@ public class crud extends javax.swing.JFrame {
         jta_DescripcionM = new javax.swing.JTextArea();
         jb_agregarM = new javax.swing.JButton();
         jc_disponibleM = new javax.swing.JCheckBox();
+        jl_idModificar = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jt_modificar = new javax.swing.JTable();
         jp_bajas = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        jl_idModificar1 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jtf_nombreB = new javax.swing.JTextField();
@@ -92,19 +94,9 @@ public class crud extends javax.swing.JFrame {
         setResizable(false);
 
         jtp_ventanas.setPreferredSize(new java.awt.Dimension(800, 600));
-        jtp_ventanas.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jtp_ventanasFocusGained(evt);
-            }
-        });
-        jtp_ventanas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtp_ventanasMouseClicked(evt);
-            }
-        });
-        jtp_ventanas.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jtp_ventanasPropertyChange(evt);
+        jtp_ventanas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jtp_ventanasStateChanged(evt);
             }
         });
 
@@ -121,12 +113,6 @@ public class crud extends javax.swing.JFrame {
 
         jtp_ventanas.addTab("Inicio", jp_inicio);
 
-        jp_altas.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jp_altasFocusGained(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Agregar Producto");
@@ -136,11 +122,6 @@ public class crud extends javax.swing.JFrame {
 
         jtf_nombre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jtf_nombre.setText("Nombre");
-        jtf_nombre.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jtf_nombreFocusGained(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel4.setText("Descripcion");
@@ -166,11 +147,6 @@ public class crud extends javax.swing.JFrame {
 
         jc_disponible.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jc_disponible.setText("Disponible");
-        jc_disponible.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jc_disponibleActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -281,15 +257,10 @@ public class crud extends javax.swing.JFrame {
         jta_DescripcionM.setColumns(20);
         jta_DescripcionM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jta_DescripcionM.setRows(5);
-        jta_DescripcionM.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jta_DescripcionMFocusGained(evt);
-            }
-        });
         jScrollPane6.setViewportView(jta_DescripcionM);
 
         jb_agregarM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jb_agregarM.setText("Agregar");
+        jb_agregarM.setText("Actualizar");
         jb_agregarM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_agregarMActionPerformed(evt);
@@ -298,11 +269,9 @@ public class crud extends javax.swing.JFrame {
 
         jc_disponibleM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jc_disponibleM.setText("Disponible");
-        jc_disponibleM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jc_disponibleMActionPerformed(evt);
-            }
-        });
+
+        jl_idModificar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_idModificar.setText("ID");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -311,7 +280,11 @@ public class crud extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jl_idModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane6)
@@ -327,14 +300,16 @@ public class crud extends javax.swing.JFrame {
                                     .addComponent(jtf_precioM, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jb_agregarM, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(36, 36, 36)))
-                .addContainerGap())
+                        .addGap(42, 42, 42))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jl_idModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel4Layout.createSequentialGroup()
@@ -366,6 +341,11 @@ public class crud extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jt_modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_modificarMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(jt_modificar);
 
         javax.swing.GroupLayout jp_modificarLayout = new javax.swing.GroupLayout(jp_modificar);
@@ -390,6 +370,9 @@ public class crud extends javax.swing.JFrame {
         );
 
         jtp_ventanas.addTab("Modificar", jp_modificar);
+
+        jl_idModificar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_idModificar1.setText("ID");
 
         jLabel23.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -425,11 +408,6 @@ public class crud extends javax.swing.JFrame {
 
         jc_disponibleB.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jc_disponibleB.setText("Disponible");
-        jc_disponibleB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jc_disponibleBActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -438,29 +416,37 @@ public class crud extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jl_idModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane8)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jtf_nombreB)
                                     .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jc_disponibleB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jtf_precioB, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jb_agregarB, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jtf_precioB, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jb_agregarB, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jc_disponibleB, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(36, 36, 36)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_idModificar1))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -473,13 +459,13 @@ public class crud extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jtf_nombreB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jb_agregarB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jc_disponibleB)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(jc_disponibleB))
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jt_bajas.setModel(new javax.swing.table.DefaultTableModel(
@@ -493,6 +479,11 @@ public class crud extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jt_bajas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_bajasMouseClicked(evt);
+            }
+        });
         jScrollPane9.setViewportView(jt_bajas);
 
         javax.swing.GroupLayout jp_bajasLayout = new javax.swing.GroupLayout(jp_bajas);
@@ -589,76 +580,8 @@ public class crud extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtp_ventanasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtp_ventanasFocusGained
-
-        Conexion conexion = Conexion.getInstancia();
-        String consulta1 = "SELECT * FROM productos;";
-        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
-
-        if (jtp_ventanas.getSelectedIndex() == 0) {
-
-        } else if (jtp_ventanas.getSelectedIndex() == 1) {
-            try {
-                // Supongamos que tienes una instancia de JTable llamada "tabla"
-                JTableLoader.loadResultSet(jt_altas, resultado);
-            } catch (SQLException e) {
-                // Manejo de excepciones
-                e.printStackTrace();
-            }
-
-        } else if (jtp_ventanas.getSelectedIndex() == 2) {
-            try {
-                // Supongamos que tienes una instancia de JTable llamada "tabla"
-                JTableLoader.loadResultSet(jt_modificar, resultado);
-            } catch (SQLException e) {
-                // Manejo de excepciones
-                e.printStackTrace();
-            }
-        } else if (jtp_ventanas.getSelectedIndex() == 3) {
-            try {
-                // Supongamos que tienes una instancia de JTable llamada "tabla"
-                JTableLoader.loadResultSet(jt_bajas, resultado);
-            } catch (SQLException e) {
-                // Manejo de excepciones
-                e.printStackTrace();
-            }
-        } else if (jtp_ventanas.getSelectedIndex() == 4) {
-            try {
-                // Supongamos que tienes una instancia de JTable llamada "tabla"
-                JTableLoader.loadResultSet(jt_consultas, resultado);
-            } catch (SQLException e) {
-                // Manejo de excepciones
-                e.printStackTrace();
-            }
-        }
-
-        try {
-            // Supongamos que tienes una instancia de JTable llamada "tabla"
-            JTableLoader.loadResultSet(jt_altas, resultado);
-        } catch (SQLException e) {
-            // Manejo de excepciones
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jtp_ventanasFocusGained
-
-    private void jc_disponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_disponibleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jc_disponibleActionPerformed
-
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-        
-        Conexion conexion = Conexion.getInstancia();
-        String consulta1 = "SELECT * FROM productos;";
-        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
 
-        try {
-            // Supongamos que tienes una instancia de JTable llamada "tabla"
-            JTableLoader.loadResultSet(jt_altas, resultado);
-        } catch (SQLException e) {
-            // Manejo de excepciones
-            e.printStackTrace();
-        }
-        
         String nombre = jtf_nombre.getText();
         String d = jta_Descripcion.getText();
         int precio = Integer.parseInt(jtf_precio.getText());
@@ -674,6 +597,11 @@ public class crud extends javax.swing.JFrame {
             Conexion conexion = Conexion.getInstancia();
             String consulta = "INSERT INTO productos (nombre, descripcion, precio, disponibilidad) VALUES (?, ?, ?, ?);";
             conexion.ejecutarConsultaSinResultado(consulta, nombre, d, precio, dispo);
+
+            jtf_nombre.setText("");
+            jta_Descripcion.setText("");
+            jtf_precio.setText("");
+            jc_disponible.setSelected(false);
 
             String consulta1 = "SELECT * FROM productos;";
             ResultSet resultado = conexion.ejecutarConsulta(consulta1);
@@ -704,7 +632,23 @@ public class crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_agregarActionPerformed
 
     private void jb_agregarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarMActionPerformed
+
+        String id = jl_idModificar.getText();
+        String nombre = jtf_nombreM.getText();
+        String descricion = jta_DescripcionM.getText();
+        String precio = jtf_precioM.getText();
+        boolean disponible = jc_disponibleM.isSelected();
+
         Conexion conexion = Conexion.getInstancia();
+        String consulta = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, disponibilidad = ? WHERE id = ?;";
+        conexion.ejecutarConsultaSinResultado(consulta, nombre, descricion, precio, disponible, id);
+        
+        jl_idModificar.setText("");
+        jtf_nombreM.setText("");
+        jta_DescripcionM.setText("");
+        jtf_precioM.setText("");
+        jc_disponibleM.setSelected(false);
+        
         String consulta1 = "SELECT * FROM productos;";
         ResultSet resultado = conexion.ejecutarConsulta(consulta1);
 
@@ -716,10 +660,6 @@ public class crud extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jb_agregarMActionPerformed
-
-    private void jc_disponibleMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_disponibleMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jc_disponibleMActionPerformed
 
     private void jb_agregarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarBActionPerformed
         Conexion conexion = Conexion.getInstancia();
@@ -735,29 +675,110 @@ public class crud extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_agregarBActionPerformed
 
-    private void jc_disponibleBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_disponibleBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jc_disponibleBActionPerformed
+    private void jt_modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_modificarMouseClicked
+        int filaSeleccionada = jt_modificar.getSelectedRow();
 
-    private void jp_altasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jp_altasFocusGained
+        if (filaSeleccionada != -1) { // Se verifica que haya una fila seleccionada
+            // Obtener los valores de las columnas de la fila seleccionada
+            Object valorColumna0 = jt_modificar.getValueAt(filaSeleccionada, 0);
+            Object valorColumna1 = jt_modificar.getValueAt(filaSeleccionada, 1);
+            Object valorColumna2 = jt_modificar.getValueAt(filaSeleccionada, 2);
+            Object valorColumna3 = jt_modificar.getValueAt(filaSeleccionada, 3);
+            Object valorColumna4 = jt_modificar.getValueAt(filaSeleccionada, 4);
 
-    }//GEN-LAST:event_jp_altasFocusGained
+            jl_idModificar.setText(valorColumna0.toString());
+            jtf_nombreM.setText(valorColumna1.toString());
+            jta_DescripcionM.setText(valorColumna2.toString());
+            jtf_precioM.setText(valorColumna3.toString());
 
-    private void jtf_nombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtf_nombreFocusGained
+            //System.out.println();
+            if (valorColumna4.toString().equals("true")) {
+                jc_disponibleM.setSelected(true);
+            }
 
-    }//GEN-LAST:event_jtf_nombreFocusGained
+            // jtf_precioM
+            // ...
+        } else {
+            // No se ha seleccionado ninguna fila, mostrar un mensaje de error o tomar alguna acción
+            System.out.println("No se ha seleccionado ninguna fila.");
+        }
+    }//GEN-LAST:event_jt_modificarMouseClicked
 
-    private void jtp_ventanasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtp_ventanasMouseClicked
-        
-    }//GEN-LAST:event_jtp_ventanasMouseClicked
+    private void jtp_ventanasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jtp_ventanasStateChanged
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT * FROM productos;";
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
 
-    private void jtp_ventanasPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jtp_ventanasPropertyChange
+        if (jtp_ventanas.getSelectedIndex() == 0) {
 
-    }//GEN-LAST:event_jtp_ventanasPropertyChange
+        }
+        if (jtp_ventanas.getSelectedIndex() == 1) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_altas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }
 
-    private void jta_DescripcionMFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jta_DescripcionMFocusGained
+        }
+        if (jtp_ventanas.getSelectedIndex() == 2) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_modificar, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }
+        }
+        if (jtp_ventanas.getSelectedIndex() == 3) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_bajas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }
+        }
+        if (jtp_ventanas.getSelectedIndex() == 4) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_consultas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jtp_ventanasStateChanged
 
-    }//GEN-LAST:event_jta_DescripcionMFocusGained
+    private void jt_bajasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_bajasMouseClicked
+        int filaSeleccionada = jt_modificar.getSelectedRow();
+
+        if (filaSeleccionada != -1) { // Se verifica que haya una fila seleccionada
+            // Obtener los valores de las columnas de la fila seleccionada
+            Object valorColumna0 = jt_modificar.getValueAt(filaSeleccionada, 0);
+            Object valorColumna1 = jt_modificar.getValueAt(filaSeleccionada, 1);
+            Object valorColumna2 = jt_modificar.getValueAt(filaSeleccionada, 2);
+            Object valorColumna3 = jt_modificar.getValueAt(filaSeleccionada, 3);
+            Object valorColumna4 = jt_modificar.getValueAt(filaSeleccionada, 4);
+
+            jl_idModificar.setText(valorColumna0.toString());
+            jtf_nombreM.setText(valorColumna1.toString());
+            jta_DescripcionM.setText(valorColumna2.toString());
+            jtf_precioM.setText(valorColumna3.toString());
+
+            //System.out.println();
+            if (valorColumna4.toString().equals("true")) {
+                jc_disponibleM.setSelected(true);
+            }
+
+            // jtf_precioM
+            // ...
+        } else {
+            // No se ha seleccionado ninguna fila, mostrar un mensaje de error o tomar alguna acción
+            System.out.println("No se ha seleccionado ninguna fila.");
+        }
+    }//GEN-LAST:event_jt_bajasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -826,6 +847,8 @@ public class crud extends javax.swing.JFrame {
     private javax.swing.JCheckBox jc_disponibleM;
     private javax.swing.JComboBox<String> jcb_columna;
     private javax.swing.JComboBox<String> jcb_tabla;
+    private javax.swing.JLabel jl_idModificar;
+    private javax.swing.JLabel jl_idModificar1;
     private javax.swing.JPanel jp_altas;
     private javax.swing.JPanel jp_bajas;
     private javax.swing.JPanel jp_consultas;
