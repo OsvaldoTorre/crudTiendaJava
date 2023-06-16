@@ -125,7 +125,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jtf_nombre" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabel4" alignment="0" pref="213" max="32767" attributes="0"/>
+                                              <Component id="jLabel4" alignment="0" pref="219" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -352,7 +352,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jtf_nombreM" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabel7" alignment="0" pref="213" max="32767" attributes="0"/>
+                                              <Component id="jLabel7" alignment="0" pref="219" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -579,7 +579,7 @@
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
                                   <Component id="jLabel23" min="-2" pref="610" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jl_idBajas" min="-2" pref="71" max="-2" attributes="0"/>
@@ -591,7 +591,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel24" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jtf_nombreB" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabel25" alignment="0" pref="213" max="32767" attributes="0"/>
+                                              <Component id="jLabel25" alignment="0" pref="219" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -601,7 +601,10 @@
                                                       <Component id="jtf_precioB" alignment="1" min="-2" pref="291" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jb_agregarB" min="-2" pref="178" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="jb_agregarB" pref="178" max="32767" attributes="0"/>
+                                                      <Component id="jButton3" max="32767" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <Component id="jc_disponibleB" min="-2" pref="291" max="-2" attributes="0"/>
                                           </Group>
@@ -621,13 +624,20 @@
                               <Component id="jLabel23" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="jl_idBajas" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="57" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jtf_precioB" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jtf_precioB" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jb_agregarB" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
@@ -635,7 +645,6 @@
                                       <Component id="jtf_nombreB" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jb_agregarB" alignment="1" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -643,7 +652,7 @@
                               <Component id="jc_disponibleB" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane8" pref="91" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" pref="67" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -743,6 +752,14 @@
                     <Property name="text" type="java.lang.String" value="Disponible"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Productos eliminados"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
