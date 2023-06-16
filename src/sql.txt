@@ -1,0 +1,7 @@
+CREATE VIEW vista_productos_detalles AS
+SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.disponibilidad,
+       detalles_venta.id AS detalle_id, detalles_venta.producto_id, detalles_venta.cantidad, detalles_venta.precio_unitario
+FROM productos
+JOIN detalles_venta ON productos.id = detalles_venta.producto_id;
+
+SELECT * FROM vista_productos_detalles;
