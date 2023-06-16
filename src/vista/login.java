@@ -359,7 +359,7 @@ public class login extends javax.swing.JFrame {
 
                 
             } else {
-                conexion.cerrarConexion();
+                
             }
         } else {
             if (!u) {
