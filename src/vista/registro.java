@@ -439,7 +439,7 @@ public class registro extends javax.swing.JFrame {
             Conexion conexion = Conexion.getInstancia();
             String consultaInsercion = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
             conexion.ejecutarConsultaSinResultado(consultaInsercion, user, email, pst1);
-            conexion.cerrarConexion();
+            
 
             jtR_user.setText("");
             jtR_email.setText("");
