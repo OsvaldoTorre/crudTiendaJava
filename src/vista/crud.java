@@ -86,8 +86,6 @@ public class crud extends javax.swing.JFrame {
         jt_consultas = new javax.swing.JTable();
         jb_buscar = new javax.swing.JButton();
         jtxt_buscarTexto = new javax.swing.JTextField();
-        jcb_columna = new javax.swing.JComboBox<>();
-        jcb_tabla = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -121,7 +119,11 @@ public class crud extends javax.swing.JFrame {
         jLabel3.setText("Nombre");
 
         jtf_nombre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jtf_nombre.setText("Nombre");
+        jtf_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_nombreKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel4.setText("Descripcion");
@@ -130,11 +132,20 @@ public class crud extends javax.swing.JFrame {
         jLabel5.setText("Precio");
 
         jtf_precio.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jtf_precio.setText("Precio");
+        jtf_precio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_precioKeyTyped(evt);
+            }
+        });
 
         jta_Descripcion.setColumns(20);
         jta_Descripcion.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jta_Descripcion.setRows(5);
+        jta_Descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jta_DescripcionKeyTyped(evt);
+            }
+        });
         jScrollPane5.setViewportView(jta_Descripcion);
 
         jb_agregar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -195,8 +206,8 @@ public class crud extends javax.swing.JFrame {
                     .addComponent(jc_disponible)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jt_altas.setModel(new javax.swing.table.DefaultTableModel(
@@ -210,6 +221,7 @@ public class crud extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jt_altas.setEnabled(false);
         jScrollPane2.setViewportView(jt_altas);
 
         javax.swing.GroupLayout jp_altasLayout = new javax.swing.GroupLayout(jp_altas);
@@ -243,7 +255,11 @@ public class crud extends javax.swing.JFrame {
         jLabel6.setText("Nombre");
 
         jtf_nombreM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jtf_nombreM.setText("Nombre");
+        jtf_nombreM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_nombreMKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel7.setText("Descripcion");
@@ -252,11 +268,20 @@ public class crud extends javax.swing.JFrame {
         jLabel8.setText("Precio");
 
         jtf_precioM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jtf_precioM.setText("Precio");
+        jtf_precioM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtf_precioMKeyTyped(evt);
+            }
+        });
 
         jta_DescripcionM.setColumns(20);
         jta_DescripcionM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jta_DescripcionM.setRows(5);
+        jta_DescripcionM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jta_DescripcionMKeyTyped(evt);
+            }
+        });
         jScrollPane6.setViewportView(jta_DescripcionM);
 
         jb_agregarM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -326,8 +351,8 @@ public class crud extends javax.swing.JFrame {
                     .addComponent(jc_disponibleM)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jt_modificar.setModel(new javax.swing.table.DefaultTableModel(
@@ -382,7 +407,7 @@ public class crud extends javax.swing.JFrame {
         jLabel24.setText("Nombre");
 
         jtf_nombreB.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jtf_nombreB.setText("Nombre");
+        jtf_nombreB.setEnabled(false);
 
         jLabel25.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel25.setText("Descripcion");
@@ -391,15 +416,16 @@ public class crud extends javax.swing.JFrame {
         jLabel26.setText("Precio");
 
         jtf_precioB.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jtf_precioB.setText("Precio");
+        jtf_precioB.setEnabled(false);
 
         jta_DescripcionB.setColumns(20);
         jta_DescripcionB.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jta_DescripcionB.setRows(5);
+        jta_DescripcionB.setEnabled(false);
         jScrollPane8.setViewportView(jta_DescripcionB);
 
         jb_agregarB.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jb_agregarB.setText("Agregar");
+        jb_agregarB.setText("Eliminar");
         jb_agregarB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_agregarBActionPerformed(evt);
@@ -408,6 +434,7 @@ public class crud extends javax.swing.JFrame {
 
         jc_disponibleB.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jc_disponibleB.setText("Disponible");
+        jc_disponibleB.setEnabled(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -459,12 +486,12 @@ public class crud extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jtf_nombreB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jb_agregarB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(jc_disponibleB))
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -523,10 +550,23 @@ public class crud extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jt_consultas);
 
         jb_buscar.setText("Buscar");
+        jb_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_buscarActionPerformed(evt);
+            }
+        });
 
-        jcb_columna.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Nombre", "Usuario", "Contraseña" }));
-
-        jcb_tabla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cualquiera", "Usuarios", "Productos" }));
+        jtxt_buscarTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxt_buscarTextoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtxt_buscarTextoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtxt_buscarTextoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_consultasLayout = new javax.swing.GroupLayout(jp_consultas);
         jp_consultas.setLayout(jp_consultasLayout);
@@ -537,11 +577,7 @@ public class crud extends javax.swing.JFrame {
                 .addGroup(jp_consultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jp_consultasLayout.createSequentialGroup()
-                        .addComponent(jcb_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcb_columna, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtxt_buscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtxt_buscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jb_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -551,14 +587,12 @@ public class crud extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_consultasLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jp_consultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcb_tabla)
-                    .addComponent(jcb_columna)
                     .addGroup(jp_consultasLayout.createSequentialGroup()
                         .addComponent(jtxt_buscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jb_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -581,31 +615,31 @@ public class crud extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarActionPerformed
-
+        
         String nombre = jtf_nombre.getText();
         String d = jta_Descripcion.getText();
-        int precio = Integer.parseInt(jtf_precio.getText());
+        int precio = Integer.parseInt(jtf_precio.getText().replace(".00", ""));
         boolean dispo = jc_disponible.isSelected();
-
+        
         validar v = new validar();
-
+        
         boolean n = v.validarNL(nombre);
         boolean p = v.validarN(jtf_precio.getText());
         boolean s = v.validarNL(d);
-
+        
         if (n && p && s) {
             Conexion conexion = Conexion.getInstancia();
             String consulta = "INSERT INTO productos (nombre, descripcion, precio, disponibilidad) VALUES (?, ?, ?, ?);";
             conexion.ejecutarConsultaSinResultado(consulta, nombre, d, precio, dispo);
-
+            
             jtf_nombre.setText("");
             jta_Descripcion.setText("");
             jtf_precio.setText("");
             jc_disponible.setSelected(false);
-
+            
             String consulta1 = "SELECT * FROM productos;";
             ResultSet resultado = conexion.ejecutarConsulta(consulta1);
-
+            
             try {
                 // Supongamos que tienes una instancia de JTable llamada "tabla"
                 JTableLoader.loadResultSet(jt_altas, resultado);
@@ -613,12 +647,12 @@ public class crud extends javax.swing.JFrame {
                 // Manejo de excepciones
                 e.printStackTrace();
             }
-
+            
         } else {
             if (!n) {
                 v.highlightComponent(jtf_nombre, 2000);
             }
-
+            
             if (!p) {
                 v.highlightComponent(jtf_precio, 2000);
             }
@@ -632,13 +666,13 @@ public class crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_agregarActionPerformed
 
     private void jb_agregarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarMActionPerformed
-
-        String id = jl_idModificar.getText();
+        
+        int id = Integer.parseInt(jl_idModificar.getText());
         String nombre = jtf_nombreM.getText();
         String descricion = jta_DescripcionM.getText();
-        String precio = jtf_precioM.getText();
+        int precio = Integer.parseInt(jtf_precioM.getText());
         boolean disponible = jc_disponibleM.isSelected();
-
+        
         Conexion conexion = Conexion.getInstancia();
         String consulta = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, disponibilidad = ? WHERE id = ?;";
         conexion.ejecutarConsultaSinResultado(consulta, nombre, descricion, precio, disponible, id);
@@ -651,7 +685,7 @@ public class crud extends javax.swing.JFrame {
         
         String consulta1 = "SELECT * FROM productos;";
         ResultSet resultado = conexion.ejecutarConsulta(consulta1);
-
+        
         try {
             // Supongamos que tienes una instancia de JTable llamada "tabla"
             JTableLoader.loadResultSet(jt_modificar, resultado);
@@ -662,10 +696,26 @@ public class crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_agregarMActionPerformed
 
     private void jb_agregarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarBActionPerformed
+        
+        int id = Integer.parseInt(jl_idBajas.getText());
+        String nombre = jtf_nombreB.getText();
+        String descricion = jta_DescripcionB.getText();
+        String precio = jtf_precioB.getText();
+        boolean disponible = jc_disponibleB.isSelected();
+        
         Conexion conexion = Conexion.getInstancia();
+        String consulta = "DELETE FROM productos WHERE id = ?;";
+        conexion.ejecutarConsultaSinResultado(consulta, id);
+        
+        jl_idBajas.setText("");
+        jtf_nombreB.setText("");
+        jta_DescripcionB.setText("");
+        jtf_precioB.setText("");
+        jc_disponibleB.setSelected(false);
+        
         String consulta1 = "SELECT * FROM productos;";
         ResultSet resultado = conexion.ejecutarConsulta(consulta1);
-
+        
         try {
             // Supongamos que tienes una instancia de JTable llamada "tabla"
             JTableLoader.loadResultSet(jt_bajas, resultado);
@@ -677,7 +727,7 @@ public class crud extends javax.swing.JFrame {
 
     private void jt_modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_modificarMouseClicked
         int filaSeleccionada = jt_modificar.getSelectedRow();
-
+        
         if (filaSeleccionada != -1) { // Se verifica que haya una fila seleccionada
             // Obtener los valores de las columnas de la fila seleccionada
             Object valorColumna0 = jt_modificar.getValueAt(filaSeleccionada, 0);
@@ -685,7 +735,7 @@ public class crud extends javax.swing.JFrame {
             Object valorColumna2 = jt_modificar.getValueAt(filaSeleccionada, 2);
             Object valorColumna3 = jt_modificar.getValueAt(filaSeleccionada, 3);
             Object valorColumna4 = jt_modificar.getValueAt(filaSeleccionada, 4);
-
+            
             jl_idModificar.setText(valorColumna0.toString());
             jtf_nombreM.setText(valorColumna1.toString());
             jta_DescripcionM.setText(valorColumna2.toString());
@@ -708,9 +758,9 @@ public class crud extends javax.swing.JFrame {
         Conexion conexion = Conexion.getInstancia();
         String consulta1 = "SELECT * FROM productos;";
         ResultSet resultado = conexion.ejecutarConsulta(consulta1);
-
+        
         if (jtp_ventanas.getSelectedIndex() == 0) {
-
+            
         }
         if (jtp_ventanas.getSelectedIndex() == 1) {
             try {
@@ -720,7 +770,7 @@ public class crud extends javax.swing.JFrame {
                 // Manejo de excepciones
                 e.printStackTrace();
             }
-
+            
         }
         if (jtp_ventanas.getSelectedIndex() == 2) {
             try {
@@ -753,7 +803,7 @@ public class crud extends javax.swing.JFrame {
 
     private void jt_bajasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_bajasMouseClicked
         int filaSeleccionada = jt_bajas.getSelectedRow();
-
+        
         if (filaSeleccionada != -1) { // Se verifica que haya una fila seleccionada
             // Obtener los valores de las columnas de la fila seleccionada
             Object valorColumna0 = jt_bajas.getValueAt(filaSeleccionada, 0);
@@ -761,7 +811,7 @@ public class crud extends javax.swing.JFrame {
             Object valorColumna2 = jt_bajas.getValueAt(filaSeleccionada, 2);
             Object valorColumna3 = jt_bajas.getValueAt(filaSeleccionada, 3);
             Object valorColumna4 = jt_bajas.getValueAt(filaSeleccionada, 4);
-
+            
             jl_idBajas.setText(valorColumna0.toString());
             jtf_nombreB.setText(valorColumna1.toString());
             jta_DescripcionB.setText(valorColumna2.toString());
@@ -779,6 +829,147 @@ public class crud extends javax.swing.JFrame {
             System.out.println("No se ha seleccionado ninguna fila.");
         }
     }//GEN-LAST:event_jt_bajasMouseClicked
+
+    private void jtf_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_nombreKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 32;
+        
+        if (!(minusculas || mayusculas || simbolo)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtf_nombreKeyTyped
+
+    private void jtf_precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_precioKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean numeros = key >= 48 && key <= 57;
+        boolean simbolo = key == 46;
+        
+        if (!(simbolo || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtf_precioKeyTyped
+
+    private void jta_DescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jta_DescripcionKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean numeros = key >= 48 && key <= 57;
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 32;
+        
+        if (!(minusculas || mayusculas || simbolo || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jta_DescripcionKeyTyped
+
+    private void jtf_nombreMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_nombreMKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 32;
+        
+        if (!(minusculas || mayusculas || simbolo)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtf_nombreMKeyTyped
+
+    private void jta_DescripcionMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jta_DescripcionMKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 32;
+        
+        if (!(minusculas || mayusculas || simbolo)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jta_DescripcionMKeyTyped
+
+    private void jtf_precioMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_precioMKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean numeros = key >= 48 && key <= 57;
+        boolean simbolo = key == 46;
+        
+        if (!(simbolo || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtf_precioMKeyTyped
+
+    private void jtxt_buscarTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxt_buscarTextoKeyTyped
+        int key = evt.getKeyChar();
+        
+        boolean numeros = key >= 48 && key <= 57;
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean simbolo = key == 32;
+        
+        if (!(minusculas || mayusculas || simbolo || numeros)) {
+            evt.consume();
+        }
+        
+        
+    }//GEN-LAST:event_jtxt_buscarTextoKeyTyped
+
+    private void jb_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_buscarActionPerformed
+        String a = jtxt_buscarTexto.getText();
+        
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT * FROM productos WHERE concat(id::text, nombre, descripcion, precio::text, disponibilidad::text) ILIKE '%" +a+ "%';";
+        System.out.println(consulta1);
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
+        if (resultado != null) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_consultas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }            
+        }
+        
+    }//GEN-LAST:event_jb_buscarActionPerformed
+
+    private void jtxt_buscarTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxt_buscarTextoKeyReleased
+        String a = jtxt_buscarTexto.getText();
+        
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT * FROM productos WHERE concat(id::text, nombre, descripcion, precio::text, disponibilidad::text) ILIKE '%" +a+ "%';";
+        System.out.println(consulta1);
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
+        if (resultado != null) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_consultas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }            
+        }
+    }//GEN-LAST:event_jtxt_buscarTextoKeyReleased
+
+    private void jtxt_buscarTextoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxt_buscarTextoKeyPressed
+        int key = evt.getKeyChar();
+        
+        Conexion conexion = Conexion.getInstancia();
+        String consulta1 = "SELECT * FROM productos WHERE concat(id::text, nombre, descripcion, precio::text, disponibilidad::text) ILIKE '%" +(char)key+ "%';";
+        System.out.println(consulta1);
+        ResultSet resultado = conexion.ejecutarConsulta(consulta1);
+        if (resultado != null) {
+            try {
+                // Supongamos que tienes una instancia de JTable llamada "tabla"
+                JTableLoader.loadResultSet(jt_consultas, resultado);
+            } catch (SQLException e) {
+                // Manejo de excepciones
+                e.printStackTrace();
+            }            
+        }
+    }//GEN-LAST:event_jtxt_buscarTextoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -845,8 +1036,6 @@ public class crud extends javax.swing.JFrame {
     private javax.swing.JCheckBox jc_disponible;
     private javax.swing.JCheckBox jc_disponibleB;
     private javax.swing.JCheckBox jc_disponibleM;
-    private javax.swing.JComboBox<String> jcb_columna;
-    private javax.swing.JComboBox<String> jcb_tabla;
     private javax.swing.JLabel jl_idBajas;
     private javax.swing.JLabel jl_idModificar;
     private javax.swing.JPanel jp_altas;
