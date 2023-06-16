@@ -68,7 +68,7 @@ public class crud extends javax.swing.JFrame {
         jt_modificar = new javax.swing.JTable();
         jp_bajas = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jl_idModificar1 = new javax.swing.JLabel();
+        jl_idBajas = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jtf_nombreB = new javax.swing.JTextField();
@@ -371,8 +371,8 @@ public class crud extends javax.swing.JFrame {
 
         jtp_ventanas.addTab("Modificar", jp_modificar);
 
-        jl_idModificar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_idModificar1.setText("ID");
+        jl_idBajas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_idBajas.setText("ID");
 
         jLabel23.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -420,7 +420,7 @@ public class crud extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jl_idModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jl_idBajas, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,7 +446,7 @@ public class crud extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jl_idModificar1))
+                    .addComponent(jl_idBajas))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -752,24 +752,24 @@ public class crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jtp_ventanasStateChanged
 
     private void jt_bajasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_bajasMouseClicked
-        int filaSeleccionada = jt_modificar.getSelectedRow();
+        int filaSeleccionada = jt_bajas.getSelectedRow();
 
         if (filaSeleccionada != -1) { // Se verifica que haya una fila seleccionada
             // Obtener los valores de las columnas de la fila seleccionada
-            Object valorColumna0 = jt_modificar.getValueAt(filaSeleccionada, 0);
-            Object valorColumna1 = jt_modificar.getValueAt(filaSeleccionada, 1);
-            Object valorColumna2 = jt_modificar.getValueAt(filaSeleccionada, 2);
-            Object valorColumna3 = jt_modificar.getValueAt(filaSeleccionada, 3);
-            Object valorColumna4 = jt_modificar.getValueAt(filaSeleccionada, 4);
+            Object valorColumna0 = jt_bajas.getValueAt(filaSeleccionada, 0);
+            Object valorColumna1 = jt_bajas.getValueAt(filaSeleccionada, 1);
+            Object valorColumna2 = jt_bajas.getValueAt(filaSeleccionada, 2);
+            Object valorColumna3 = jt_bajas.getValueAt(filaSeleccionada, 3);
+            Object valorColumna4 = jt_bajas.getValueAt(filaSeleccionada, 4);
 
-            jl_idModificar.setText(valorColumna0.toString());
-            jtf_nombreM.setText(valorColumna1.toString());
-            jta_DescripcionM.setText(valorColumna2.toString());
-            jtf_precioM.setText(valorColumna3.toString());
+            jl_idBajas.setText(valorColumna0.toString());
+            jtf_nombreB.setText(valorColumna1.toString());
+            jta_DescripcionB.setText(valorColumna2.toString());
+            jtf_precioB.setText(valorColumna3.toString());
 
             //System.out.println();
             if (valorColumna4.toString().equals("true")) {
-                jc_disponibleM.setSelected(true);
+                jc_disponibleB.setSelected(true);
             }
 
             // jtf_precioM
@@ -847,8 +847,8 @@ public class crud extends javax.swing.JFrame {
     private javax.swing.JCheckBox jc_disponibleM;
     private javax.swing.JComboBox<String> jcb_columna;
     private javax.swing.JComboBox<String> jcb_tabla;
+    private javax.swing.JLabel jl_idBajas;
     private javax.swing.JLabel jl_idModificar;
-    private javax.swing.JLabel jl_idModificar1;
     private javax.swing.JPanel jp_altas;
     private javax.swing.JPanel jp_bajas;
     private javax.swing.JPanel jp_consultas;
