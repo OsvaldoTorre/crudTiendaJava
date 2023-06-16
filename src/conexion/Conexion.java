@@ -22,8 +22,8 @@ public class Conexion {
     private Conexion() {
         // Datos de conexión a la base de datos
         String jdbcUrl = "jdbc:postgresql://localhost:5432/tienda_abarrotes";
-        String usuario = "postgres";
-        String contraseña = "admin";
+        String usuario = "pepito";
+        String contraseña = "1234";
 
         try {
             // Establecer la conexión
