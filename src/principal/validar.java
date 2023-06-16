@@ -39,17 +39,17 @@ public class validar {
     }
 
     public boolean validarN(String input) {
-        boolean isValidUsername = input.matches("^[0-9]+$");
+        boolean isValidUsername = input.matches("^\\d+$");
         return isValidUsername;
     }
 
     public boolean validarNL(String input) {
-        boolean isValidUsername = input.matches("^[a-zA-Z0-9]+$");
+        boolean isValidUsername = input.matches("^[a-zA-Z0-9\\s]+$");
         return isValidUsername;
     }
 
     public boolean validarL(String input) {
-        boolean isValidUsername = input.matches("^[a-zA-Z]+$");
+        boolean isValidUsername = input.matches("^[a-zA-Z\\s]+$");
         return isValidUsername;
     }
 
