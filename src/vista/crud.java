@@ -740,11 +740,14 @@ public class crud extends javax.swing.JFrame {
         String precio = jtf_precioB.getText();
         boolean disponible = jc_disponibleB.isSelected();
         
+        
+        
         Conexion conexion = Conexion.getInstancia();
+        String consulta10 = "DELETE FROM detalles_venta WHERE id = ?;";
+        conexion.ejecutarConsultaSinResultado(consulta10, id);
         String consulta = "DELETE FROM productos WHERE id = ?;";
         conexion.ejecutarConsultaSinResultado(consulta, id);
-        
-        
+       
         
         jl_idBajas.setText("");
         jtf_nombreB.setText("");
@@ -918,13 +921,14 @@ public class crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jtf_nombreMKeyTyped
 
     private void jta_DescripcionMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jta_DescripcionMKeyTyped
-        int key = evt.getKeyChar();
+       int key = evt.getKeyChar();
         
+        boolean numeros = key >= 48 && key <= 57;
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
         boolean simbolo = key == 32;
         
-        if (!(minusculas || mayusculas || simbolo)) {
+        if (!(minusculas || mayusculas || simbolo || numeros)) {
             evt.consume();
         }
     }//GEN-LAST:event_jta_DescripcionMKeyTyped
